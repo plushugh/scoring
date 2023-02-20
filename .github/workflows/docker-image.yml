@@ -2,7 +2,7 @@ name: PocketBase Docker Image CI
 
 env:
   REGISTRY: ghcr.io
-  PB_IMAGE_NAME: pocketbase
+  PB_IMAGE_NAME: treee-studio/scoring/pocketbase
 
 on:
   push:
