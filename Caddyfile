@@ -1,0 +1,7 @@
+{$PUBLIC_POCKETBASE_URL} {
+        reverse_proxy pocketbase:8013
+}
+
+{$PUBLIC_BASE_URL} {
+        reverse_proxy web:3013
+}
