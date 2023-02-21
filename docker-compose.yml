@@ -26,7 +26,7 @@ services:
 
   caddy:
     container_name: caddy
-    image: caddy:2.6.4-alpine
+    image: 'ghcr.io/treee-studio/scoring/caddy:main'
     networks:
       - web
       - caddy-net
@@ -34,6 +34,7 @@ services:
     environment:
       - PUBLIC_POCKETBASE_URL=${PUBLIC_POCKETBASE_URL}
       - PUBLIC_BASE_URL=${PUBLIC_BASE_URL}
+      - CADDY_DNS_APIKEY=${CADDY_DNS_APIKEY}
     ports:
       - '80:80'
       - '443:443'
