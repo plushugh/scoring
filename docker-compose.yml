@@ -26,7 +26,7 @@ services:
 
   caddy:
     container_name: caddy
-    build: ./caddy-with-cloudflare
+    image: caddy:2.6.4-alpine
     networks:
       - web
       - caddy-net
