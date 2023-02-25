@@ -19,8 +19,15 @@ services:
     restart: unless-stopped
     environment:
       - PORT=8013
+    volumes:
+      - $PWD/pocketbase/pb_data:/pb_data
     ports:
       - '8013:8013'
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://localhost:8013/api/health || exit 1
+      interval: 5s
+      timeout: 5s
+      retries: 5
     networks:
       - caddy-net
 

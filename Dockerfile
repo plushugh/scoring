@@ -1,6 +1,9 @@
-FROM node:16-alpine
+FROM node:18-alpine
 
 ENV PUBLIC_POCKETBASE_URL "http://localhost:8090"
+# Runs behind reverse proxy
+ENV PROTOCOL_HEADER=x-forwarded-proto
+ENV HOST_HEADER=x-forwarded-host
 ENV PORT 3000
 
 RUN npm install -g pnpm
