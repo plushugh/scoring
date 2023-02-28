@@ -65,8 +65,6 @@ jobs:
 
       - name: Build and push
         uses: docker/build-push-action@v4
-        env:
-          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
         with:
           context: .
           push: true
