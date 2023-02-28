@@ -12,6 +12,7 @@ COPY package.json pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile
 
 COPY . .
+COPY .env.example .env
 RUN pnpm build
 
 EXPOSE ${PORT}
