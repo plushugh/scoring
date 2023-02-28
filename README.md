@@ -21,6 +21,7 @@ cp .env.example .env
 PUBLIC_POCKETBASE_URL="https://pb.yourdomain.tld"
 PUBLIC_BASE_URL="https://yourdomain.tld"
 CADDY_DNS_APIKEY="your-dns-api-key"
+SENTRY_DSN="your-sentry-dsn"
 ```
 
 ### 3. Manually create Caddy data dir for persistent storage and networks

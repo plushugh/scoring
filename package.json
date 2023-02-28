@@ -1,6 +1,6 @@
 {
 	"name": "scoring",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"private": true,
 	"scripts": {
 		"dev": "svelte-kit sync && vite dev",
@@ -9,9 +9,16 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
-		"format": "prettier --plugin-search-dir . --write ."
+		"format": "prettier --plugin-search-dir . --write .",
+		"typegen": "pocketbase-typegen --db ./pb_data/data.db --out src/pocketbase-types.ts"
 	},
+	"predev": "pnpm run typegen",
+	"prebuild": "pnpm run typegen",
+	"precheck": "pnpm run typegen",
+	"prelint": "pnpm run typegen",
+	"preformat": "pnpm run typegen",
 	"devDependencies": {
+		"@sentry/vite-plugin": "^0.4.0",
 		"@sveltejs/adapter-node": "next",
 		"@sveltejs/kit": "next",
 		"@typescript-eslint/eslint-plugin": "^5.27.0",
@@ -32,6 +39,10 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"pocketbase": "^0.10.2"
+		"@sentry/node": "^7.38.0",
+		"@sentry/svelte": "^7.38.0",
+		"@sentry/tracing": "^7.38.0",
+		"pocketbase": "^0.10.2",
+		"svelte-canvas": "^0.9.0"
 	}
 }

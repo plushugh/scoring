@@ -3,6 +3,7 @@
  */
 
 export enum Collections {
+	Houses = 'houses',
 	Recorders = 'recorders',
 	Records = 'records',
 	Students = 'students'
@@ -32,6 +33,12 @@ export type AuthSystemFields<T = never> = {
 
 // Record types for each collection
 
+export type HousesRecord = {
+	score?: number;
+	name: string;
+	color: string;
+};
+
 export type RecordersRecord = {
 	name?: string;
 };
@@ -44,22 +51,29 @@ export type RecordsRecord = {
 	action: RecordsActionOptions;
 	change: number;
 	recorder: RecordIdString;
-	field?: string;
 };
 
+export enum StudentsHouseOptions {
+	'gryffindor' = 'gryffindor',
+	'slytherin' = 'slytherin',
+	'hufflepuff' = 'hufflepuff',
+	'ravenclaw' = 'ravenclaw'
+}
 export type StudentsRecord = {
 	name: string;
 	cardNumber: string;
-	score: number;
-	field: RecordIdString[];
+	score?: number;
+	house: StudentsHouseOptions;
 };
 
 // Response types include system fields and match responses from the PocketBase API
+export type HousesResponse = HousesRecord & BaseSystemFields;
 export type RecordersResponse = RecordersRecord & AuthSystemFields;
 export type RecordsResponse<Texpand = unknown> = RecordsRecord & BaseSystemFields<Texpand>;
-export type StudentsResponse<Texpand = unknown> = StudentsRecord & BaseSystemFields<Texpand>;
+export type StudentsResponse = StudentsRecord & BaseSystemFields;
 
 export type CollectionRecords = {
+	houses: HousesRecord;
 	recorders: RecordersRecord;
 	records: RecordsRecord;
 	students: StudentsRecord;

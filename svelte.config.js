@@ -9,9 +9,14 @@ const config = {
 		preprocess({
 			scss: {
 				prependData: '@use "src/variables.scss" as *;'
-			}
+			},
+			sourceMap: true
 		})
 	],
+
+	compilerOptions: {
+		enableSourcemap: true
+	},
 
 	kit: {
 		adapter: adapter()
