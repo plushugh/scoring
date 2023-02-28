@@ -16,7 +16,9 @@ export default defineConfig(({ mode }) => {
 
 				// Auth tokens can be obtained from https://sentry.io/settings/account/api/auth-tokens/
 				// and need `project:releases` and `org:read` scopes
-				authToken: process.env.SENTRY_AUTH_TOKEN
+				authToken: process.env.SENTRY_AUTH_TOKEN,
+
+				telemetry: false
 			})
 		],
 		build: {
