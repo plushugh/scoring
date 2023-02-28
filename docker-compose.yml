@@ -6,9 +6,9 @@ services:
     image: 'ghcr.io/treee-studio/scoring/web:main'
     restart: unless-stopped
     environment:
-      - PUBLIC_POCKETBASE_URL=${PUBLIC_POCKETBASE_URL}
-      - PUBLIC_SENTRY_DSN=${PUBLIC_SENTRY_DSN}
       - PORT=3013
+    volumes:
+      - $PWD/.env:/app/.env
     ports:
       - '3013:3013'
     networks:
