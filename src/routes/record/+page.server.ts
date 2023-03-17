@@ -1,10 +1,12 @@
 import { serializeNonPOJOs } from '$lib/utils';
 import { fail } from '@sveltejs/kit';
-import type { HousesResponse, StudentsResponse } from 'src/pocketbase-types';
+import type { HousesResponse, RecordsRecord, StudentsResponse } from 'src/pocketbase-types';
 import type { Actions } from './$types';
 
 export const actions = {
 	default: async ({ locals, request }) => {
+		if (!locals.user) return fail(401, { type: 'UNAUTHORIZED' });
+
 		try {
 			const data = Object.fromEntries(await request.formData()) as {
 				cardNumber: string;
@@ -20,11 +22,10 @@ export const actions = {
 			if (isNaN(parseInt(data.cardNumber)))
 				return fail(400, { cardNumber: data.cardNumber, type: 'INVALID' });
 			if (
-				parseInt(data.score) !== 1 &&
-				parseInt(data.score) !== 2 &&
-				parseInt(data.score) !== 3 &&
-				parseInt(data.score) !== 4 &&
-				parseInt(data.score) !== 5
+				parseInt(data.score) !== 5 &&
+				parseInt(data.score) !== 10 &&
+				parseInt(data.score) !== 20 &&
+				parseInt(data.score) !== 30
 			)
 				return fail(400, { score: data.score, type: 'INVALID' });
 
@@ -47,6 +48,24 @@ export const actions = {
 				await locals.pb.collection('houses').update<HousesResponse>(house.id, {
 					score: (house.score || 0) + parseInt(data.score)
 				});
+
+				try {
+					// LOG RECORD
+					await locals.pb.collection('records').create<RecordsRecord>({
+						action: 'increase',
+						change: parseInt(data.score),
+						student: student.id,
+						recorder: locals.user.id
+					});
+				} catch (e) {
+					console.log(e);
+					console.log('Failed to log record: ', {
+						action: 'increase',
+						change: parseInt(data.score),
+						student: student.id,
+						recorder: locals.user.id
+					});
+				}
 
 				return {
 					name: student.name,

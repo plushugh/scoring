@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Logo from '$lib/components/Logo.svelte';
 	import { pb } from '$lib/pocketbase';
 	import { serializeNonPOJOs } from '$lib/utils';
 	import type { HousesResponse, StudentsResponse } from 'src/pocketbase-types';
@@ -282,6 +283,10 @@
 			style="--tint: {house.color};"
 			animate:flip={{ duration: (d) => 20 * Math.sqrt(d) }}
 		>
+			<!-- <div class={'rank' + (i === 0 ? ' rank_first' : '')}>#{i + 1}</div> -->
+			<div class="logo">
+				<Logo house={house.name} />
+			</div>
 			<h3>
 				{house.name === 'gryffindor'
 					? '格兰芬多'
@@ -292,6 +297,9 @@
 					: house.name === 'slytherin'
 					? '斯莱特林'
 					: '未知'}
+			</h3>
+			<h3>
+				{house.name}
 			</h3>
 			<span>{house.score}</span>
 			<ol class="phb">
@@ -339,8 +347,8 @@
 		height: 10vh;
 	}
 	.qp {
-		width: 80vw;
-		height: 80vh;
+		width: 82vw;
+		height: 79vh;
 
 		overflow-y: hidden;
 
@@ -348,50 +356,123 @@
 
 		display: grid;
 
+		gap: 1rem;
+
 		grid-template-columns: repeat(4, 1fr);
 		.xy {
 			display: flex;
 			flex-direction: column;
-			gap: 1.5rem;
+			gap: 3rem;
+			position: relative;
 
-			border: 4px solid #fff;
-			border-right: none;
 			color: white;
 
 			background-color: var(--tint);
 
 			padding: 2rem 1rem;
 
-			&:last-of-type {
-				border-right: 1px dashed #222222;
+			// .rank {
+			// 	position: absolute;
+			// 	top: 0;
+			// 	left: 0;
+
+			// 	margin: 1rem;
+
+			// 	color: white;
+
+			// 	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+			// 		'Courier New', monospace;
+			// 	font-weight: 700;
+			// 	font-size: 1rem;
+			// }
+
+			// .rank_first {
+			// 	color: #ffd700;
+			// 	font-size: 1.6em;
+			// 	-webkit-text-stroke: 1px #000;
+			// }
+
+			.logo {
+				width: 100%;
+				height: 100px;
+
+				display: flex;
+				justify-content: center;
+				align-items: center;
+
+				:global(svg) {
+					width: 100%;
+					height: 100%;
+				}
 			}
 
 			h3 {
-				font-size: 2rem;
+				font-size: 3rem;
+				font-weight: 900;
 				text-align: center;
+				line-height: 0.15;
+
+				font-family: 'Heiti SC';
+
+				text-transform: capitalize;
+			}
+
+			h3:last-of-type {
+				font-size: 2rem;
+				font-weight: 700;
+				font-family: Superclarendon, 'Bookman Old Style', 'URW Bookman', 'URW Bookman L',
+					'Georgia Pro', Georgia, serif;
+				margin-bottom: 0.45rem;
 			}
 
 			span {
-				font-size: 3rem;
+				font-size: 4rem;
+				font-weight: 700;
 				text-align: center;
+				line-height: 1;
 
-				font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
-					'Courier New', monospace;
+				font-family: Avenir, 'Avenir Next LT Pro', Montserrat, Corbel, 'URW Gothic', source-sans-pro,
+					sans-serif;
 
 				font-feature-settings: 'tnum';
 			}
 
 			ol.phb {
 				list-style: none;
-				padding: 0;
+				padding: 0 1.5em;
 
 				counter-reset: list;
+
+				li {
+					opacity: 0;
+				}
+
+				li:nth-of-type(1),
+				li:nth-of-type(2),
+				li:nth-of-type(3),
+				li:nth-of-type(4),
+				li:nth-of-type(5),
+				li:nth-of-type(6),
+				li:nth-of-type(7),
+				li:nth-of-type(8),
+				li:nth-of-type(9),
+				li:nth-of-type(10),
+				li:nth-of-type(11) {
+					opacity: 1;
+				}
 
 				li.house-student {
 					&::before {
 						counter-increment: list;
 						content: counter(list) '.';
 						margin-right: 0.5rem;
+
+						font-size: 1.4rem;
+						font-weight: 500;
+						font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+							'Courier New', monospace;
+
+						font-feature-settings: 'tnum';
 					}
 
 					display: flex;
@@ -408,7 +489,7 @@
 					}
 
 					.house-student__name {
-						font-size: 1.2rem;
+						font-size: 1.4rem;
 						font-weight: 500;
 						text-overflow: ellipsis;
 					}
@@ -416,8 +497,12 @@
 					.house-student__score {
 						flex-grow: 1;
 						text-align: right;
-						font-size: 1.2rem;
+						font-size: 1.4rem;
 						font-weight: 500;
+						font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+							'Courier New', monospace;
+
+						font-feature-settings: 'tnum';
 						text-overflow: ellipsis;
 					}
 				}
@@ -425,40 +510,40 @@
 		}
 	}
 
-	.realtime-leaderboard {
-		position: relative;
-		width: 100%;
-		height: 100%;
-		padding-top: 20px;
-	}
+	// .realtime-leaderboard {
+	// 	position: relative;
+	// 	width: 100%;
+	// 	height: 100%;
+	// 	padding-top: 20px;
+	// }
 
-	.student {
-		position: absolute;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		border-radius: 5px;
-		padding: 0 10px;
+	// .student {
+	// 	position: absolute;
+	// 	display: flex;
+	// 	justify-content: space-between;
+	// 	align-items: center;
+	// 	border-radius: 5px;
+	// 	padding: 0 10px;
 
-		color: white;
+	// 	color: white;
 
-		width: var(--width);
-		height: var(--height);
-		transform: translate(var(--tf-x), var(--tf-y));
-		background-color: var(--bg);
+	// 	width: var(--width);
+	// 	height: var(--height);
+	// 	transform: translate(var(--tf-x), var(--tf-y));
+	// 	background-color: var(--bg);
 
-		transition: all 0.5s ease-in-out;
-	}
+	// 	transition: all 0.5s ease-in-out;
+	// }
 
-	.student__name {
-		font-size: 1.2rem;
-		font-weight: 500;
-		text-overflow: ellipsis;
-	}
+	// .student__name {
+	// 	font-size: 1.2rem;
+	// 	font-weight: 500;
+	// 	text-overflow: ellipsis;
+	// }
 
-	.student__score {
-		font-size: 1.2rem;
-		font-weight: 500;
-		text-overflow: ellipsis;
-	}
+	// .student__score {
+	// 	font-size: 1.2rem;
+	// 	font-weight: 500;
+	// 	text-overflow: ellipsis;
+	// }
 </style>
