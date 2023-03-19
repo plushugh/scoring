@@ -12,6 +12,7 @@ SentryNode.init({
 export const handle: Handle = async ({ event, resolve }) => {
 	// before
 	pb.authStore.loadFromCookie(event.request.headers.get('cookie') || '');
+
 	if (pb.authStore.isValid) {
 		try {
 			await pb.collection('recorders').authRefresh();
@@ -25,8 +26,11 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 	const response = await resolve(event);
 
-	// after
-	response.headers.set('set-cookie', pb.authStore.exportToCookie({ httpOnly: false }));
+	// after resolve()
+	response.headers.set(
+		'set-cookie',
+		pb.authStore.exportToCookie({ httpOnly: false, secure: false })
+	);
 
 	return response;
 };

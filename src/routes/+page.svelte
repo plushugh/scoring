@@ -78,15 +78,15 @@
 		unsubscribeStudentsG = await pb
 			.collection('students')
 			.subscribe<StudentsResponse>('*', ({ action, record }) => {
-				if (action === 'create') {
+				if (action === 'create' && record.house === 'gryffindor') {
 					studentsG = [...studentsG, serializeNonPOJOs(record)];
 				}
-				if (action === 'delete') {
+				if (action === 'delete' && record.house === 'gryffindor') {
 					studentsG = studentsG.filter(
 						(s) => s.cardNumber !== serializeNonPOJOs(record).cardNumber
 					);
 				}
-				if (action === 'update') {
+				if (action === 'update' && record.house === 'gryffindor') {
 					studentsG = studentsG.map((s) =>
 						s.cardNumber === serializeNonPOJOs(record).cardNumber ? serializeNonPOJOs(record) : s
 					);
@@ -106,15 +106,15 @@
 		unsubscribeStudentsH = await pb
 			.collection('students')
 			.subscribe<StudentsResponse>('*', ({ action, record }) => {
-				if (action === 'create') {
+				if (action === 'create' && record.house === 'hufflepuff') {
 					studentsH = [...studentsH, serializeNonPOJOs(record)];
 				}
-				if (action === 'delete') {
+				if (action === 'delete' && record.house === 'hufflepuff') {
 					studentsH = studentsH.filter(
 						(s) => s.cardNumber !== serializeNonPOJOs(record).cardNumber
 					);
 				}
-				if (action === 'update') {
+				if (action === 'update' && record.house === 'hufflepuff') {
 					studentsH = studentsH.map((s) =>
 						s.cardNumber === serializeNonPOJOs(record).cardNumber ? serializeNonPOJOs(record) : s
 					);
@@ -135,15 +135,15 @@
 		unsubscribeStudentsR = await pb
 			.collection('students')
 			.subscribe<StudentsResponse>('*', ({ action, record }) => {
-				if (action === 'create') {
+				if (action === 'create' && record.house === 'ravenclaw') {
 					studentsR = [...studentsR, serializeNonPOJOs(record)];
 				}
-				if (action === 'delete') {
+				if (action === 'delete' && record.house === 'ravenclaw') {
 					studentsR = studentsR.filter(
 						(s) => s.cardNumber !== serializeNonPOJOs(record).cardNumber
 					);
 				}
-				if (action === 'update') {
+				if (action === 'update' && record.house === 'ravenclaw') {
 					studentsR = studentsR.map((s) =>
 						s.cardNumber === serializeNonPOJOs(record).cardNumber ? serializeNonPOJOs(record) : s
 					);
@@ -164,15 +164,15 @@
 		unsubscribeStudentsS = await pb
 			.collection('students')
 			.subscribe<StudentsResponse>('*', ({ action, record }) => {
-				if (action === 'create') {
+				if (action === 'create' && record.house === 'slytherin') {
 					studentsS = [...studentsS, serializeNonPOJOs(record)];
 				}
-				if (action === 'delete') {
+				if (action === 'delete' && record.house === 'slytherin') {
 					studentsS = studentsS.filter(
 						(s) => s.cardNumber !== serializeNonPOJOs(record).cardNumber
 					);
 				}
-				if (action === 'update') {
+				if (action === 'update' && record.house === 'slytherin') {
 					studentsS = studentsS.map((s) =>
 						s.cardNumber === serializeNonPOJOs(record).cardNumber ? serializeNonPOJOs(record) : s
 					);
