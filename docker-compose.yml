@@ -3,7 +3,7 @@ version: '3'
 services:
   web:
     container_name: web
-    image: 'ghcr.io/treee-studio/scoring/web:main'
+    image: 'ghcr.io/plushugh/scoring/web:main'
     restart: unless-stopped
     environment:
       - PORT=3013
@@ -16,7 +16,7 @@ services:
 
   pocketbase:
     container_name: pocketbase
-    image: 'ghcr.io/treee-studio/scoring/pocketbase:main'
+    image: 'ghcr.io/plushugh/scoring/pocketbase:main'
     restart: unless-stopped
     environment:
       - PORT=8013
@@ -34,7 +34,7 @@ services:
 
   caddy:
     container_name: caddy
-    image: 'ghcr.io/treee-studio/scoring/caddy:main'
+    image: 'ghcr.io/plushugh/scoring/caddy:main'
     networks:
       - web
       - caddy-net

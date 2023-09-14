@@ -5,7 +5,7 @@
 - Docker
 - Docker compose
 
-### 1. Authenticate docker with org's github tokens for permission to pull from `ghcr.io/treee-studio/*`
+### 1. Authenticate docker with your github tokens for permission to pull from `ghcr.io/plushugh/*`
 ```bash
 docker login ghcr.io -u <username>
 # enter your personal access token as password in the prompts

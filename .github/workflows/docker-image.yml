@@ -2,9 +2,9 @@ name: Docker Image CI
 
 env:
   REGISTRY: ghcr.io
-  PB_IMAGE_NAME: treee-studio/scoring/pocketbase
-  WEB_IMAGE_NAME: treee-studio/scoring/web
-  CADDY_IMAGE_NAME: treee-studio/scoring/caddy
+  PB_IMAGE_NAME: plushugh/scoring/pocketbase
+  WEB_IMAGE_NAME: plushugh/scoring/web
+  CADDY_IMAGE_NAME: plushugh/scoring/caddy
 
 on:
   push:
