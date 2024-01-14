@@ -23,10 +23,6 @@ PUBLIC_BASE_URL="https://domain.tld"
 PUBLIC_SENTRY_DSN="sentry_dsn_here"
 
 CADDY_DNS_APIKEY="api_key_here"
-
-# BUILD ONLY
-SENTRY_ORG="sentry_org_here"
-SENTRY_PROJECT="sentry_project_here"
 ```
 
 ### 3. Manually create Caddy data dir for persistent storage and networks
