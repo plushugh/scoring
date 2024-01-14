@@ -1,0 +1,16 @@
+{
+  "name": "scoring-tools",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@faker-js/faker": "^8.2.0",
+    "bun-types": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "bun-promptx": "^0.2.0",
+    "pocketbase": "0.10.2"
+  }
+}
