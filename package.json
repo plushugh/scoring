@@ -19,29 +19,29 @@
 	"preformat": "pnpm run typegen",
 	"devDependencies": {
 		"@sentry/vite-plugin": "^0.4.0",
-		"@sveltejs/adapter-node": "next",
-		"@sveltejs/kit": "next",
+		"@sveltejs/adapter-node": "1.3.1",
+		"@sveltejs/kit": "1.27.2",
 		"@typescript-eslint/eslint-plugin": "^5.62.0",
 		"@typescript-eslint/parser": "^5.62.0",
-		"eslint": "^8.49.0",
+		"eslint": "^8.52.0",
 		"eslint-config-prettier": "^8.10.0",
 		"eslint-plugin-svelte3": "^4.0.0",
-		"pocketbase-typegen": "^1.1.13",
+		"pocketbase-typegen": "^1.2.1",
 		"prettier": "^2.8.8",
 		"prettier-plugin-svelte": "^2.10.1",
-		"sass": "^1.67.0",
+		"sass": "^1.69.5",
 		"svelte": "^3.59.2",
 		"svelte-check": "^2.10.3",
 		"svelte-preprocess": "^4.10.7",
 		"tslib": "^2.6.2",
 		"typescript": "^4.9.5",
-		"vite": "^4.4.9"
+		"vite": "^4.5.0"
 	},
 	"type": "module",
 	"dependencies": {
-		"@sentry/node": "^7.69.0",
-		"@sentry/svelte": "^7.69.0",
-		"@sentry/tracing": "^7.69.0",
+		"@sentry/node": "^7.77.0",
+		"@sentry/svelte": "^7.77.0",
+		"@sentry/tracing": "^7.77.0",
 		"pocketbase": "^0.10.2",
 		"svelte-canvas": "^0.9.3"
 	}
