@@ -1,5 +1,5 @@
 {
-        acme_dns cloudflare {env.CADDY_DNS_APIKEY}
+        acme_dns netlify {env.CADDY_DNS_APIKEY}
 }
 
 {$PUBLIC_POCKETBASE_URL} {
