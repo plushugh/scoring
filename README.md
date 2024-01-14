@@ -19,7 +19,6 @@ cp .env.example .env
 
 ```env
 PUBLIC_POCKETBASE_URL="https://domain.tld/pb"
-PB_REVERSE_PROXY_URL="https://domain.tld/pb/*"
 PUBLIC_BASE_URL="https://domain.tld"
 PUBLIC_SENTRY_DSN="sentry_dsn_here"
 
