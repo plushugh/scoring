@@ -2,7 +2,7 @@
         acme_dns netlify {env.CADDY_DNS_APIKEY}
 }
 
-{$PUBLIC_POCKETBASE_URL} {
+{$PB_REVERSE_PROXY_URL} {
         reverse_proxy pocketbase:8013
 }
 
